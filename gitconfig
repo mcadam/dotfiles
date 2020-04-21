@@ -1,0 +1,8 @@
+[core]
+	editor = nvim
+	quotepath = false
+[user]
+	name = Adam Guldemann
+	email = adam.guldemann@gmail.com
+[color]
+	ui = true
