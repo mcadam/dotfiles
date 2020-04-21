@@ -76,6 +76,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo usermod -aG sudo $username
 sudo usermod -aG docker $username
 
+# update user permissions
+sudo chown -R $username:$username /home/$username
+
 # update default shell for user
 su - $username
 chsh -s /usr/bin/fish
