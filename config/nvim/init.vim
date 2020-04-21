@@ -133,6 +133,9 @@ let g:go_fmt_command = "goimports"
 let g:go_def_mode = 'godef'
 " let g:go_list_type = "quickfix"
 
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+
 autocmd FileType go nmap <Leader>i <Plug>(go-info)
 
 let $FZF_DEFAULT_OPTS = '--height 40% --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
