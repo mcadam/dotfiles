@@ -42,7 +42,12 @@ sudo mv tmux-3.0a-x86_64.AppImage /usr/bin/tmux
 sudo chmod +x /usr/bin/tmux
 
 # install utils
-sudo apt install -y neovim git build-essential exuberant-ctags wget curl speedtest-cli htop jq ripgrep zip
+sudo apt install -y git build-essential exuberant-ctags wget curl speedtest-cli htop jq ripgrep zip
+
+# install neovim
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt update
+sudo apt install -y neovim
 
 # install ripgrep
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
