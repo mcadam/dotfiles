@@ -42,6 +42,8 @@ end
 set -x GOPATH /home/adam/go
 set -x PATH $PATH /usr/local/go/bin $GOPATH/bin /snap/bin
 
+set fish_color_command green
+
 # Kubectl aliases
 # This command is used a LOT both below and in daily life
 alias k=kubectl
