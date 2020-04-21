@@ -69,3 +69,10 @@ sudo chmod +x /usr/local/bin/docker-compose
 # update user to groups
 sudo usermod -aG sudo $username
 sudo usermod -aG docker $username
+
+# update default shell for user
+su - $username
+chsh -s /usr/bin/fish
+
+# reload shell
+su - $username
