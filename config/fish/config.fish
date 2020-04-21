@@ -40,4 +40,4 @@ end
 
 # Golang
 set -x GOPATH /home/adam/go
-set -x PATH $PATH /usr/local/go/bin $GOPATH/bin
+set -x PATH $PATH /usr/local/go/bin $GOPATH/bin /snap/bin
