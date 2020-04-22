@@ -36,8 +36,6 @@ set ttimeout
 set ttimeoutlen=10
 set backspace=indent,eol,start
 set history=1000
-set laststatus=2  " Always display the status line
-set statusline=%=%m\ %P\ %f
 set ruler         " show the cursor position all the time
 set clipboard=unnamed
 set completeopt-=preview
@@ -96,6 +94,7 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :qa!<cr>
 
 
+
 " golang
 let g:go_fmt_command = "goimports"
 " let g:go_metalinter_autosave = 1
@@ -137,3 +136,68 @@ vmap <silent> <Left>   <gv
 vmap <silent> <Right>  >gv
 vmap <silent> <Up>     [egv
 vmap <silent> <Down>   ]egv
+
+" Status Function
+function! Status(winnr)
+  let stat = '%='
+  let active = winnr() == a:winnr
+  let buffer = winbufnr(a:winnr)
+
+  let modified = getbufvar(buffer, '&modified')
+  let readonly = getbufvar(buffer, '&ro')
+  let fname = bufname(buffer)
+
+  function! Color(active, num, content)
+    if a:active
+      return '%' . a:num . '*' . a:content . '%*'
+    else
+      return a:content
+    endif
+  endfunction
+
+  " syntastic warning
+  " let stat .= Color(active, 5, '%{validator#get_status_string()}     ')
+
+  " percent file context
+  let stat .= '%2*' . (col(".") / 100 >= 1 ? '  %p%% ' : '   %2p%% ') . '%*'
+
+  " paste
+  if active && &paste
+    let stat .= ' %2*' . 'P' . '%*'
+  endif
+
+  " file name
+  if readonly
+    let stat .= Color(active, 5, '   %f')
+  elseif modified
+    let stat .= Color(active, 3, '   %f')
+  else
+    let stat .= '   %f'
+  endif
+  return stat
+endfunction
+
+" Status AutoCMD
+function! SetStatus()
+  for nr in range(1, winnr('$'))
+    call setwinvar(nr, '&statusline', '%!Status('.nr.')')
+  endfor
+endfunction
+
+augroup status
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter,BufUnload * call SetStatus()
+augroup END
+
+" Status Colors
+hi StatusLine ctermbg=none ctermfg=7 cterm=none guibg=#282c34
+hi User1 ctermfg=0  guifg=#5daef2 ctermbg=none guibg=#282c34 gui=bold
+hi User2 ctermfg=125 guifg=#5D636F  ctermbg=none  guibg=#282c34 gui=bold
+hi User3 ctermfg=64  guifg=#F19B2C  ctermbg=none  guibg=#282c34 gui=bold
+hi User4 ctermfg=37  guifg=#5daef2  ctermbg=none  guibg=#282c34 gui=bold
+hi User5 ctermfg=1  guifg=#e26b73  ctermbg=none  guibg=#282c34 gui=bold
+
+hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
+hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
+hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
+hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
