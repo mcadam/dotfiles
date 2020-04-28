@@ -18,36 +18,39 @@ create_user() {
   fi
 }
 
-# create user
-create_user
 
-apt update
-apt install -y sudo
+# if root create user and log in as user and cp dotfiles
+if [[ $EUID -eq 0 ]]; then
+  apt install -y sudo
+  create_user
+  cp -r /root/.dotfiles /home/$username/.dotfiles
+  chown -R $username:$username /home/$username
+  export USER=$username
+fi
+
+# add repos
+sudo add-apt-repository -y ppa:martin-frost/thoughtbot-rcm
+sudo add-apt-repository -y ppa:neovim-ppa/stable
+sudo add-apt-repository -y ppa:longsleep/golang-backports
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+# update package list
+sudo apt update
 
 # add GB locale
 sudo update-locale
 sudo locale-gen en_GB.utf8
-
-# install rcm dotfiles manager
-wget -qO - https://apt.thoughtbot.com/thoughtbot.gpg.key | sudo apt-key add -
-echo "deb https://apt.thoughtbot.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/thoughtbot.list
-sudo apt update
-sudo apt install -y rcm
-rcup rcrc
-rcup -v
 
 # install tmux
 curl -LO https://github.com/tmux/tmux/releases/download/3.0a/tmux-3.0a-x86_64.AppImage
 sudo mv tmux-3.0a-x86_64.AppImage /usr/bin/tmux
 sudo chmod +x /usr/bin/tmux
 
-# install utils
-sudo apt install -y git build-essential exuberant-ctags wget curl speedtest-cli htop jq ripgrep zip
-
-# install neovim
-sudo add-apt-repository ppa:neovim-ppa/stable
-sudo apt update
-sudo apt install -y neovim
+# install apps
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common \
+  git build-essential exuberant-ctags wget speedtest-cli htop jq ripgrep zip fish \
+  golang-go docker-ce rcm neovim
 
 # install ripgrep
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
@@ -58,30 +61,20 @@ sudo rm ripgrep_11.0.2_amd64.deb
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-# install golang
-sudo add-apt-repository ppa:longsleep/golang-backports
-sudo apt update
-sudo apt install -y golang-go
-
-# install docker
-sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-sudo apt update
-sudo apt install -y docker-ce
+# install docker-compose
 sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # update user to groups
-sudo usermod -aG sudo $username
-sudo usermod -aG docker $username
+sudo usermod -aG sudo $USER
+sudo usermod -aG docker $USER
 
-# update user permissions
-sudo chown -R $username:$username /home/$username
+# use fish shell
+sudo chsh -s /usr/bin/fish $USER
+sudo chsh -s /usr/bin/fish root
 
-# update default shell for user
-su - $username
-chsh -s /usr/bin/fish
+# install dotfiles
+rcup rcrc
+rcup -v
 
-# reload shell
-su - $username
+sudo su - $USER
