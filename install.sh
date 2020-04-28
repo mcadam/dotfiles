@@ -49,7 +49,7 @@ sudo chmod +x /usr/bin/tmux
 
 # install apps
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common \
-  git build-essential exuberant-ctags wget speedtest-cli htop jq ripgrep zip fish \
+  git build-essential exuberant-ctags wget speedtest-cli htop jq zip fish \
   golang-go docker-ce rcm neovim
 
 # install ripgrep
@@ -74,6 +74,9 @@ sudo chsh -s /usr/bin/fish $USER
 sudo chsh -s /usr/bin/fish root
 
 # install dotfiles
+sudo su - $USER -c rcup rcrc
+sudo su - $USER -c rcup -v
+
 rcup rcrc
 rcup -v
 
