@@ -44,6 +44,8 @@ set -x PATH $PATH /usr/local/go/bin $GOPATH/bin /snap/bin
 
 set fish_color_command green
 
+set -U FZF_LEGACY_KEYBINDINGS 0
+
 # Kubectl aliases
 # This command is used a LOT both below and in daily life
 alias k=kubectl
