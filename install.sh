@@ -1,33 +1,5 @@
 #!/bin/bash
 
-create_user() {
-  if [ $(id -u) -eq 0 ]; then
-    read -p "Enter username : " username
-    read -s -p "Enter password : " password
-    egrep "^$username" /etc/passwd >/dev/null
-    if [ $? -eq 0 ]; then
-      echo "$username exists!"
-    else
-      pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
-      useradd -m -p $pass $username
-      [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
-    fi
-  else
-    echo "Only root may add a user to the system"
-    exit 2
-  fi
-}
-
-
-# if root create user and log in as user and cp dotfiles
-if [[ $EUID -eq 0 ]]; then
-  apt install -y sudo
-  create_user
-  cp -r /root/.dotfiles /home/$username/.dotfiles
-  chown -R $username:$username /home/$username
-  export USER=$username
-fi
-
 # add repos
 sudo add-apt-repository -y ppa:martin-frost/thoughtbot-rcm
 sudo add-apt-repository -y ppa:neovim-ppa/stable
@@ -70,13 +42,9 @@ sudo usermod -aG sudo $USER
 sudo usermod -aG docker $USER
 
 # use fish shell
-sudo chsh -s /usr/bin/fish $USER
-sudo chsh -s /usr/bin/fish root
+chsh -s /usr/bin/fish
 
 # install dotfiles
-sudo su - $USER -c rcup rcrc
-sudo su - $USER -c rcup -v
-
 rcup rcrc
 rcup -v
 
