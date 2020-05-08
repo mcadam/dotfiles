@@ -1,7 +1,7 @@
 #!/bin/bash
 
 is_dirty() {
-  if [ $(git status -s | wc -l) = 0 ]; then
+  if [ $(git --no-optional-locks status -s | wc -l) = 0 ]; then
     echo "#[fg=green]⎇ "
   else
     echo "#[fg=yellow]⎇ "

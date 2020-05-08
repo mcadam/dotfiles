@@ -6,11 +6,11 @@ endif
 
 call plug#begin()
 
-Plug '~/.fzf'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'junegunn/vim-pseudocl'
@@ -22,6 +22,8 @@ Plug 'joshdick/onedark.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'dense-analysis/ale'
 Plug 'ervandew/supertab'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 
 call plug#end()
@@ -32,8 +34,6 @@ syntax on
 color onedark
 
 set ttyfast
-set ttimeout
-set ttimeoutlen=10
 set backspace=indent,eol,start
 set history=1000
 set ruler         " show the cursor position all the time
