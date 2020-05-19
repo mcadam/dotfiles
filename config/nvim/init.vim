@@ -10,6 +10,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'

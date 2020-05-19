@@ -31,11 +31,21 @@ sudo rm ripgrep_11.0.2_amd64.deb
 
 # install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+~/.fzf/install --all
 
 # install docker-compose
 sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
+
+# install microk8s
+snap install microk8s --classic --stable
+microk8s enable dns ingress storage
+snap alias microk8s.kubectl kubectl
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+microk8s config > ~/.kube/config
+wget https://github.com/sbstp/kubie/releases/download/v0.9.1/kubie-linux-amd64
+chmod +x kubie-linux-amd64
+mv kubie-linux-amd64 /usr/local/bin/kubie
 
 # update user to groups
 sudo usermod -aG sudo $USER
