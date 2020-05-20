@@ -134,6 +134,10 @@ kube_tmux() {
 
   # Context
   # KUBE_TMUX+="#[fg=${2}]${KUBE_TMUX_CONTEXT}"
+  # Symbol
+  if [[ "${KUBE_TMUX_SYMBOL_ENABLE}" == true ]]; then
+    KUBE_TMUX+="#[fg=blue]$(_kube_tmux_symbol)#[fg=colour${1}]"
+  fi
 
   # Namespace
   if [[ "${KUBE_TMUX_NS_ENABLE}" == true ]]; then
@@ -143,10 +147,6 @@ kube_tmux() {
     KUBE_TMUX+="#[fg=${3}]${KUBE_TMUX_NAMESPACE} "
   fi
 
-  # Symbol
-  if [[ "${KUBE_TMUX_SYMBOL_ENABLE}" == true ]]; then
-    KUBE_TMUX+="#[fg=#5c6370]$(_kube_tmux_symbol)#[fg=colour${1}]"
-  fi
   echo "${KUBE_TMUX}"
 }
 
