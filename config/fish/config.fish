@@ -12,6 +12,8 @@ alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
 
+alias j=z
+
 # Auto ls when cd
 function cd
     if count $argv > /dev/null
