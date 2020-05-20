@@ -6,3 +6,5 @@
 	email = adam.guldemann@gmail.com
 [color]
 	ui = true
+[credential]
+	helper = store
