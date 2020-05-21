@@ -60,6 +60,9 @@ set nohlsearch  "highlight searches
 set incsearch   "incremental searching
 set ignorecase  "ignore case for searching
 set smartcase   "do case-sensitive if there's a capital letter
+set list       "highlight whitespace
+set listchars=tab:│\ ,trail:•,extends:❯,precedes:❮
+
 
 " Tagbar toggle
 nnoremap <leader>p :TagbarToggle<cr>
@@ -70,9 +73,34 @@ inoremap jj <esc>
 " U: Redos since 'u' undos
 nnoremap U <c-r>
 
+" p: Paste
+nnoremap p gp
+
 " Toggle comment
 nmap \ gcc
 xmap \ gcc<esc>
+
+" d: Delete into the blackhole register to not clobber the last yank
+nnoremap d "_d
+
+" dd: I use this often to yank a single line, retain its original behavior
+nnoremap dd dd
+
+" y: Yank and go to end of selection
+xnoremap y y`]
+
+" p: Paste in visual mode should not replace the default register with the
+" deleted text
+xnoremap p "_dP
+
+" c: Change into the blackhole register to not clobber the last yank
+nnoremap c "_c
+
+" c: Change into the blackhole register to not clobber the last yank
+nnoremap C "_C
+
+" n: Next, keep search matches in the middle of the window
+nnoremap n nzzzv
 
 " Toggle paste mode
 nnoremap <silent> <leader>p :set paste!<cr>
