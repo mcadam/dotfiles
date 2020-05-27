@@ -43,10 +43,7 @@ microk8s enable dns ingress storage
 snap alias microk8s.kubectl kubectl
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 microk8s config > ~/.kube/config
-wget https://github.com/sbstp/kubie/releases/download/v0.9.1/kubie-linux-amd64
-chmod +x kubie-linux-amd64
-mv kubie-linux-amd64 /usr/local/bin/kubie
-echo "--allow-privileged=true" > /var/snap/microk8s/current/args/kube-apiserver
+echo "--allow-privileged=true" >> /var/snap/microk8s/current/args/kube-apiserver
 
 # update user to groups
 sudo usermod -aG sudo $USER
