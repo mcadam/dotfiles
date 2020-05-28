@@ -42,6 +42,7 @@ snap install microk8s --classic --stable
 microk8s enable dns ingress storage
 snap alias microk8s.kubectl kubectl
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+mkdir -p ~/.kube
 microk8s config > ~/.kube/config
 echo "--allow-privileged=true" >> /var/snap/microk8s/current/args/kube-apiserver
 
