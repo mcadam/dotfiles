@@ -39,7 +39,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 # install microk8s
 snap install microk8s --classic --stable
-microk8s enable dns ingress storage
+microk8s enable dns ingress storage metrics-server
 snap alias microk8s.kubectl kubectl
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 mkdir -p ~/.kube
