@@ -45,6 +45,7 @@ curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bas
 mkdir -p ~/.kube
 microk8s config > ~/.kube/config
 echo "--allow-privileged=true" >> /var/snap/microk8s/current/args/kube-apiserver
+systemctl restart snap.microk8s.daemon-apiserver
 wget https://github.com/derailed/k9s/releases/download/v0.20.2/k9s_Linux_x86_64.tar.gz
 tar xvf k9s_Linux_x86_64.tar.gz && mv k9s /usr/local/bin/ && rm k9s_Linux_x86_64.tar.gz
 
