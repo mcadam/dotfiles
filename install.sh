@@ -48,6 +48,7 @@ echo "--allow-privileged=true" >> /var/snap/microk8s/current/args/kube-apiserver
 systemctl restart snap.microk8s.daemon-apiserver
 wget https://github.com/derailed/k9s/releases/download/v0.20.2/k9s_Linux_x86_64.tar.gz
 tar xvf k9s_Linux_x86_64.tar.gz && mv k9s /usr/local/bin/ && rm k9s_Linux_x86_64.tar.gz
+iptables -P FORWARD ACCEPT
 
 # update user to groups
 sudo usermod -aG sudo $USER
