@@ -14,6 +14,15 @@ alias vim='nvim'
 
 alias j=z
 
+function toggle_theme
+  set file ~/.config/alacritty/alacritty.yml
+  if rg -q "\*light" $file
+    sed -i "" 's/*light/*dark/g' $file
+  else
+    sed -i "" 's/*dark/*light/g' $file
+  end
+end
+
 # Auto ls when cd
 function cd
     if count $argv > /dev/null
@@ -42,7 +51,7 @@ end
 
 # Golang
 set -x GOPATH $HOME/go
-set -x PATH $PATH /usr/local/go/bin $GOPATH/bin /snap/bin
+set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH /usr/local/go/bin $GOPATH/bin /snap/bin
 
 set fish_color_command green
 

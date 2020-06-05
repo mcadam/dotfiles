@@ -19,6 +19,7 @@ Plug 'junegunn/vim-fnr'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
 Plug 'jiangmiao/auto-pairs'
 Plug 'dense-analysis/ale'
 Plug 'ervandew/supertab'
@@ -31,7 +32,12 @@ call plug#end()
 let mapleader=' '
 
 syntax on
-color onedark
+color one
+if strftime('%H') >= 7 && strftime('%H') < 17
+  set background=light
+else
+  set background=dark
+endif
 
 set ttyfast
 set backspace=indent,eol,start
@@ -214,16 +220,4 @@ augroup status
   autocmd VimEnter,WinEnter,BufWinEnter,BufUnload * call SetStatus()
 augroup END
 
-" Status Colors
-hi StatusLine ctermbg=none ctermfg=7 cterm=none guibg=none
-hi User1 ctermfg=0  guifg=#5daef2 ctermbg=none guibg=none gui=bold
-hi User2 ctermfg=125 guifg=#5D636F  ctermbg=none  guibg=none gui=bold
-hi User3 ctermfg=64  guifg=#F19B2C  ctermbg=none  guibg=none gui=bold
-hi User4 ctermfg=37  guifg=#5daef2  ctermbg=none  guibg=none gui=bold
-hi User5 ctermfg=1  guifg=#e26b73  ctermbg=none  guibg=none gui=bold
-
-hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
-hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
-hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
-hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
-hi Normal ctermbg=none guibg=none
+hi StatusLine ctermbg=none guibg=none
