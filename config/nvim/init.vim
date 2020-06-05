@@ -215,14 +215,15 @@ augroup status
 augroup END
 
 " Status Colors
-hi StatusLine ctermbg=none ctermfg=7 cterm=none guibg=#282c34
-hi User1 ctermfg=0  guifg=#5daef2 ctermbg=none guibg=#282c34 gui=bold
-hi User2 ctermfg=125 guifg=#5D636F  ctermbg=none  guibg=#282c34 gui=bold
-hi User3 ctermfg=64  guifg=#F19B2C  ctermbg=none  guibg=#282c34 gui=bold
-hi User4 ctermfg=37  guifg=#5daef2  ctermbg=none  guibg=#282c34 gui=bold
-hi User5 ctermfg=1  guifg=#e26b73  ctermbg=none  guibg=#282c34 gui=bold
+hi StatusLine ctermbg=none ctermfg=7 cterm=none guibg=none
+hi User1 ctermfg=0  guifg=#5daef2 ctermbg=none guibg=none gui=bold
+hi User2 ctermfg=125 guifg=#5D636F  ctermbg=none  guibg=none gui=bold
+hi User3 ctermfg=64  guifg=#F19B2C  ctermbg=none  guibg=none gui=bold
+hi User4 ctermfg=37  guifg=#5daef2  ctermbg=none  guibg=none gui=bold
+hi User5 ctermfg=1  guifg=#e26b73  ctermbg=none  guibg=none gui=bold
 
 hi InsertCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=37  guibg=#2aa198
 hi VisualCursor  ctermfg=15 guifg=#fdf6e3 ctermbg=125 guibg=#d33682
 hi ReplaceCursor ctermfg=15 guifg=#fdf6e3 ctermbg=65  guibg=#dc322f
 hi CommandCursor ctermfg=15 guifg=#fdf6e3 ctermbg=166 guibg=#cb4b16
+hi Normal ctermbg=none guibg=none
