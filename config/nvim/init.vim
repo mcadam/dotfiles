@@ -42,6 +42,7 @@ set completeopt-=preview
 set modelines=3
 set nobackup
 set noshowmode
+set noshowcmd
 set noswapfile
 set nowrap
 set nowritebackup
