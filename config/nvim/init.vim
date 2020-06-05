@@ -16,7 +16,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-fnr'
-Plug 'junegunn/goyo.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'joshdick/onedark.vim'
@@ -63,10 +62,6 @@ set smartcase   "do case-sensitive if there's a capital letter
 set list       "highlight whitespace
 set listchars=tab:│\ ,trail:•,extends:❯,precedes:❮
 
-
-" Tagbar toggle
-nnoremap <leader>p :TagbarToggle<cr>
-
 " Esc from insert mode
 inoremap jj <esc>
 
@@ -103,7 +98,7 @@ nnoremap C "_C
 nnoremap n nzzzv
 
 " Toggle paste mode
-nnoremap <silent> <leader>p :set paste!<cr>
+nnoremap <silent> <leader>p :set paste! number! list!<cr>
 
 " Tab navigation
 map <Tab> :bnext<cr>
@@ -188,7 +183,7 @@ function! Status(winnr)
   " let stat .= Color(active, 5, '%{validator#get_status_string()}     ')
 
   " percent file context
-  let stat .= '%2*' . (col(".") / 100 >= 1 ? '  %p%% ' : '   %2p%% ') . '%*'
+  " let stat .= '%2*' . (col(".") / 100 >= 1 ? '  %p%% ' : '   %2p%% ') . '%*'
 
   " paste
   if active && &paste
@@ -197,11 +192,11 @@ function! Status(winnr)
 
   " file name
   if readonly
-    let stat .= Color(active, 5, '   %f')
+    let stat .= Color(active, 5, '   פּ %f')
   elseif modified
-    let stat .= Color(active, 3, '   %f')
+    let stat .= Color(active, 3, '   פּ %f')
   else
-    let stat .= '   %f'
+    let stat .= '   פּ %f'
   endif
   return stat
 endfunction
