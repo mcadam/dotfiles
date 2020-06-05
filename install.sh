@@ -1,5 +1,7 @@
 #!/bin/bash
 
+timedatectl set-timezone Australia/Melbourne
+
 # add repos
 sudo add-apt-repository -y ppa:martin-frost/thoughtbot-rcm
 sudo add-apt-repository -y ppa:neovim-ppa/stable
