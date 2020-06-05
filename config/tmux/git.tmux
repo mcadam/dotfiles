@@ -2,9 +2,9 @@
 
 is_dirty() {
   if [ $(git --no-optional-locks status -s | wc -l) = 0 ]; then
-    echo "#[fg=green]⎇ "
+    echo "#[fg=green]"
   else
-    echo "#[fg=yellow]⎇ "
+    echo "#[fg=yellow]"
   fi
 }
 
