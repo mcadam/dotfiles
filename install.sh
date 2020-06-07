@@ -50,6 +50,11 @@ echo "--allow-privileged=true" >> /var/snap/microk8s/current/args/kube-apiserver
 systemctl restart snap.microk8s.daemon-apiserver
 wget https://github.com/derailed/k9s/releases/download/v0.20.2/k9s_Linux_x86_64.tar.gz
 tar xvf k9s_Linux_x86_64.tar.gz && mv k9s /usr/local/bin/ && rm k9s_Linux_x86_64.tar.gz
+wget https://github.com/ahmetb/kubectx/releases/download/v0.9.0/kubectx_v0.9.0_linux_x86_64.tar.gz
+wget https://github.com/ahmetb/kubectx/releases/download/v0.9.0/kubens_v0.9.0_linux_x86_64.tar.gz
+tar xvf kubectx_v0.9.0_linux_x86_64.tar.gz && mv kubectx /usr/local/bin/kctx && rm kubectx_v0.9.0_linux_x86_64.tar.gz
+tar xvf kubens_v0.9.0_linux_x86_64.tar.gz && mv kubens /usr/local/bin/kns && rm kubens_v0.9.0_linux_x86_64.tar.gz
+echo > /var/snap/microk8s/current/args/kubectl-env
 iptables -P FORWARD ACCEPT
 
 # update user to groups
