@@ -134,7 +134,23 @@ let g:go_def_mode = 'godef'
 
 autocmd FileType go nmap <leader>i <Plug>(go-info)
 
-let $FZF_DEFAULT_OPTS = '--height 40% --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
+" Customize fzf colors to match your color scheme
+" - fzf#wrap translates this to a set of `--color` options
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
 nnoremap <silent> <leader><space> :Files<cr>
 nnoremap <silent> <leader>f :BTags<cr>
 nnoremap <silent> <leader>t :Tags<cr>
@@ -148,8 +164,8 @@ command! -bang -nargs=* Rg
 
 if has('nvim') && !exists('g:fzf_layout')
 	autocmd! FileType fzf
-	autocmd  FileType fzf set laststatus=0 noshowmode noruler
-				\| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+	autocmd  FileType fzf set laststatus=0 noruler
+				\| autocmd BufLeave <buffer> set laststatus=2 ruler
 endif
 
 " Arrow key remapping:
@@ -194,19 +210,20 @@ function! Status(winnr)
 
   " paste
   if active && &paste
-    let stat .= ' %2*' . 'P' . '%*'
+    let stat .= ' %2*' . '' . '%*'
   endif
 
   " file name
   if readonly
-    let stat .= Color(active, 5, '   פּ %f')
+    let stat .= Color(active, 5, '   פּ  %f')
   elseif modified
-    let stat .= Color(active, 3, '   פּ %f')
+    let stat .= Color(active, 3, '   פּ  %f')
   else
-    let stat .= '   פּ %f'
+    let stat .= '   פּ  %f'
   endif
   return stat
 endfunction
+
 
 " Status AutoCMD
 function! SetStatus()
@@ -221,3 +238,8 @@ augroup status
 augroup END
 
 hi StatusLine ctermbg=none guibg=none
+hi User1 ctermfg=0  guifg=#5daef2 ctermbg=none guibg=none gui=bold
+hi User2 ctermfg=125 guifg=#5D636F  ctermbg=none  guibg=none gui=bold
+hi User3 ctermfg=64  guifg=#d19a66  ctermbg=none  guibg=none gui=bold
+hi User4 ctermfg=37  guifg=#5daef2  ctermbg=none  guibg=none gui=bold
+hi User5 ctermfg=1  guifg=#e06c75  ctermbg=none  guibg=none gui=bold

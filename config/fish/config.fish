@@ -57,6 +57,7 @@ set fish_color_command green
 
 set -U FZF_LEGACY_KEYBINDINGS 0
 set -U EDITOR vim
+set -U FZF_DEFAULT_OPTS "--color dark --color fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef"
 
 # Kubectl aliases
 # This command is used a LOT both below and in daily life
