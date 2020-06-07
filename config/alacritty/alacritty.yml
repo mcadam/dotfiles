@@ -163,12 +163,10 @@ schemes:
 
     # Normal colors
     normal:
-      # NOTE: Use '#131613' for the `black` color if you'd like to see
-      # black text on the background.
       black:   '#282c34'
       red:     '#e45649'
       green:   '#50a14f'
-      yellow:  '#986801'
+      yellow:  '#d19a66'
       blue:    '#4078f2'
       magenta: '#a626a4'
       cyan:    '#0184bc'
@@ -183,7 +181,7 @@ schemes:
       blue:    '#61afef'
       magenta: '#c678dd'
       cyan:    '#56b6c2'
-      white:   '#ffffff'
+      white:   '#fafafa'
 
   # Colors (One Dark)
   one_dark: &dark
