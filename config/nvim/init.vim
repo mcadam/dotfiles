@@ -33,6 +33,7 @@ let mapleader=' '
 
 syntax on
 color one
+let g:one_allow_italics = 1
 if strftime('%H') >= 7 && strftime('%H') < 17
   set background=light
 else
