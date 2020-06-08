@@ -51,7 +51,7 @@ end
 
 # Golang
 set -x GOPATH $HOME/go
-set -x PATH $PATH /usr/local/go/bin $GOPATH/bin /snap/bin
+set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH /usr/local/go/bin $GOPATH/bin /snap/bin
 
 set fish_color_command green
 
