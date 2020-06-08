@@ -181,7 +181,7 @@ schemes:
       blue:    '#61afef'
       magenta: '#c678dd'
       cyan:    '#56b6c2'
-      white:   '#fafafa'
+      white:   '#494b53'
 
   # Colors (One Dark)
   one_dark: &dark
