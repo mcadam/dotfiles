@@ -126,11 +126,15 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :qa!<cr>
 
 
+" search
+if has('timers')
+  " Blink 2 times with 50ms interval
+  noremap <expr> <plug>(slash-after) 'zz'.slash#blink(2, 100)
+endif
 
 " golang
 let g:go_fmt_command = "goimports"
 " let g:go_metalinter_autosave = 1
-let g:go_def_mode = 'godef'
 " let g:go_list_type = "quickfix"
 
 autocmd FileType go nmap <leader>i <Plug>(go-info)
