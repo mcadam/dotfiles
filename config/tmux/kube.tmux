@@ -133,11 +133,11 @@ kube_tmux() {
   local KUBE_TMUX
 
   # Context
-  # KUBE_TMUX+="#[fg=${2}]${KUBE_TMUX_CONTEXT}"
   # Symbol
   if [[ "${KUBE_TMUX_SYMBOL_ENABLE}" == true ]]; then
     KUBE_TMUX+="ﴱ  "
   fi
+  KUBE_TMUX+="#[fg=${2}]${KUBE_TMUX_CONTEXT} / "
 
   # Namespace
   if [[ "${KUBE_TMUX_NS_ENABLE}" == true ]]; then
