@@ -9,10 +9,13 @@ alias j=z
 
 function toggle_theme
   set file ~/.config/alacritty/alacritty.yml
+  set batfile ~/.config/bat/config
   if rg -q "\*light" $file
     sed -i 's/*light/*dark/g' $file
+    sed -i 's/light/dark/g' $batfile
   else
     sed -i 's/*dark/*light/g' $file
+    sed -i 's/dark/light/g' $batfile
   end
 end
 
@@ -50,10 +53,15 @@ set fish_color_command green
 set fish_color_error red
 set fish_color_param blue
 set fish_color_operator blue
+set fish_greeting "Welcome back Adam"
 
 set -U FZF_LEGACY_KEYBINDINGS 0
 set -U EDITOR nvim
-set -U FZF_DEFAULT_OPTS "--height 50% --color dark --color fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef"
+set -U FZF_DEFAULT_OPTS "--ansi --height 50% --color dark --color fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef"
+set -U FZF_FIND_FILE_COMMAND "fd --color=always --hidden --exclude .git --type f . \$dir"
+set -U FZF_OPEN_COMMAND "fd --color=always --hidden --exclude .git --type f . \$dir"
+set -U FZF_PREVIEW_FILE_CMD "bat --color=always --style=numbers,grid --line-range :300"
+set -U FZF_ENABLE_OPEN_PREVIEW 1
 
 # Kubectl aliases
 # This command is used a LOT both below and in daily life

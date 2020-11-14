@@ -158,21 +158,23 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-nnoremap <silent> <leader><space> :Files<cr>
+command! Ctrlp execute (len(system('git rev-parse'))) ? ':Files' : ':GFiles'
+nnoremap <silent> <leader><space> :Ctrlp<cr>
 nnoremap <silent> <leader>f :BTags<cr>
 nnoremap <silent> <leader>t :Tags<cr>
 nnoremap <silent> <leader>h :History<cr>
 nnoremap <leader>/ :Rg<space>
 
+" Rg command search with preview
 command! -bang -nargs=* Rg
-			\ call fzf#vim#grep(
-			\   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-			\   fzf#vim#with_preview(), <bang>0)
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+      \   fzf#vim#with_preview(), <bang>0)
 
 if has('nvim') && !exists('g:fzf_layout')
-	autocmd! FileType fzf
-	autocmd  FileType fzf set laststatus=0 noruler
-				\| autocmd BufLeave <buffer> set laststatus=2 ruler
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noruler
+        \| autocmd BufLeave <buffer> set laststatus=2 ruler
 endif
 
 " Arrow key remapping:
