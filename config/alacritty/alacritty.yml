@@ -178,12 +178,12 @@ schemes:
     # Bright colors
     bright:
       black:   '#5c6370'
-      red:     '#e06c75'
-      green:   '#98c379'
+      red:     '#e45649'
+      green:   '#50a14f'
       yellow:  '#d19a66'
-      blue:    '#61afef'
-      magenta: '#c678dd'
-      cyan:    '#56b6c2'
+      blue:    '#4078f2'
+      magenta: '#a626a4'
+      cyan:    '#0184bc'
       white:   '#494b53'
 
   # Colors (One Dark)
