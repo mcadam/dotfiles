@@ -10,9 +10,9 @@ alias j=z
 function toggle_theme
   set file ~/.config/alacritty/alacritty.yml
   if rg -q "\*light" $file
-    sed -i "" 's/*light/*dark/g' $file
+    sed -i 's/*light/*dark/g' $file
   else
-    sed -i "" 's/*dark/*light/g' $file
+    sed -i 's/*dark/*light/g' $file
   end
 end
 
@@ -44,7 +44,7 @@ end
 
 # Golang
 set -x GOPATH $HOME/go
-set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH /usr/local/go/bin $GOPATH/bin /snap/bin
+set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin /usr/local/opt/coreutils/libexec/gnubin $PATH /usr/local/go/bin $GOPATH/bin /snap/bin
 
 set fish_color_command green
 set fish_color_error red
