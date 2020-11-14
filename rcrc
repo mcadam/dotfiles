@@ -1,1 +1,1 @@
-EXCLUDES="README*.md LICENSE install.sh"
+EXCLUDES="README*.md LICENSE install.sh install-macos.sh"

@@ -10,3 +10,5 @@
 	helper = store
 [pull]
 	rebase = false
+[includeIf "gitdir:~/Develop/thorchain/"]
+    path = ~/.gitconfig-thorchain

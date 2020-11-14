@@ -47,9 +47,12 @@ set -x GOPATH $HOME/go
 set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH /usr/local/go/bin $GOPATH/bin /snap/bin
 
 set fish_color_command green
+set fish_color_error red
+set fish_color_param blue
+set fish_color_operator blue
 
 set -U FZF_LEGACY_KEYBINDINGS 0
-set -U EDITOR vim
+set -U EDITOR nvim
 set -U FZF_DEFAULT_OPTS "--height 50% --color dark --color fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef"
 
 # Kubectl aliases
