@@ -28,6 +28,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 Plug 'mhinz/vim-startify'
+Plug 'terryma/vim-expand-region'
 
 call plug#end()
 
@@ -71,6 +72,7 @@ set ignorecase  "ignore case for searching
 set smartcase   "do case-sensitive if there's a capital letter
 set list       "highlight whitespace
 set listchars=tab:│\ ,trail:•,extends:❯,precedes:❮
+set mouse-=a
 
 " Esc from insert mode
 inoremap jj <esc>
