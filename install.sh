@@ -23,7 +23,7 @@ sudo chmod +x /usr/bin/tmux
 # install apps
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common \
   git build-essential exuberant-ctags wget speedtest-cli htop jq zip fish \
-  golang-go docker-ce rcm neovim python3-pip
+  golang-go docker-ce rcm neovim python3-pip snapd
 sudo python3 -m pip install --user --upgrade pynvim
 
 # install ripgrep
@@ -54,6 +54,7 @@ wget https://github.com/ahmetb/kubectx/releases/download/v0.9.0/kubectx_v0.9.0_l
 wget https://github.com/ahmetb/kubectx/releases/download/v0.9.0/kubens_v0.9.0_linux_x86_64.tar.gz
 tar xvf kubectx_v0.9.0_linux_x86_64.tar.gz && mv kubectx /usr/local/bin/kctx && rm kubectx_v0.9.0_linux_x86_64.tar.gz
 tar xvf kubens_v0.9.0_linux_x86_64.tar.gz && mv kubens /usr/local/bin/kns && rm kubens_v0.9.0_linux_x86_64.tar.gz
+echo > /var/snap/microk8s/current/args/kubectl-env
 iptables -P FORWARD ACCEPT
 
 # update user to groups
