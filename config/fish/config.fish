@@ -37,6 +37,9 @@ function fish_prompt
     echo -e -n '❯' (set_color normal)
 end
 
+function fish_right_prompt
+end
+
 function rgr
     rg -0 -l "$argv[1]" | xargs -0 perl -pi.bak -e "s/$argv[1]/$argv[2]/g";
 end
@@ -48,6 +51,7 @@ end
 # Golang
 set -x GOPATH $HOME/go
 set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin /usr/local/opt/coreutils/libexec/gnubin $PATH /usr/local/go/bin $GOPATH/bin /snap/bin
+set -x EDITOR nvim
 
 set fish_color_command green
 set fish_color_error red
@@ -56,7 +60,6 @@ set fish_color_operator blue
 set fish_greeting "Welcome back Adam"
 
 set -U FZF_LEGACY_KEYBINDINGS 0
-set -U EDITOR nvim
 set -U FZF_DEFAULT_OPTS "--ansi --height 50% --color dark --color fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef"
 set -U FZF_FIND_FILE_COMMAND "fd --color=always --hidden --exclude .git --type f . \$dir"
 set -U FZF_OPEN_COMMAND "fd --color=always --hidden --exclude .git --type f . \$dir"
