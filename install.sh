@@ -1,9 +1,8 @@
 #!/bin/bash
 
-timedatectl set-timezone Australia/Melbourne
+timedatectl set-timezone Indian/Mauritius
 
 # add repos
-sudo add-apt-repository -y ppa:martin-frost/thoughtbot-rcm
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo add-apt-repository -y ppa:longsleep/golang-backports
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -24,7 +23,8 @@ sudo chmod +x /usr/bin/tmux
 # install apps
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common \
   git build-essential exuberant-ctags wget speedtest-cli htop jq zip fish \
-  golang-go docker-ce rcm neovim
+  golang-go docker-ce rcm neovim python3-pip
+sudo python3 -m pip install --user --upgrade pynvim
 
 # install ripgrep
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
@@ -54,7 +54,6 @@ wget https://github.com/ahmetb/kubectx/releases/download/v0.9.0/kubectx_v0.9.0_l
 wget https://github.com/ahmetb/kubectx/releases/download/v0.9.0/kubens_v0.9.0_linux_x86_64.tar.gz
 tar xvf kubectx_v0.9.0_linux_x86_64.tar.gz && mv kubectx /usr/local/bin/kctx && rm kubectx_v0.9.0_linux_x86_64.tar.gz
 tar xvf kubens_v0.9.0_linux_x86_64.tar.gz && mv kubens /usr/local/bin/kns && rm kubens_v0.9.0_linux_x86_64.tar.gz
-echo > /var/snap/microk8s/current/args/kubectl-env
 iptables -P FORWARD ACCEPT
 
 # update user to groups
@@ -67,5 +66,8 @@ chsh -s /usr/bin/fish
 # install dotfiles
 rcup rcrc
 rcup -v
+
+# install fisher
+fish -c "curl -L git.io/fisher | source && fisher install" <~/.config/fish/fish_plugins
 
 sudo su - $USER
