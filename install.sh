@@ -42,18 +42,21 @@ curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compo
 sudo chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
 # install microk8s
+mkdir -p ~/.kube
 sudo snap install microk8s --classic --stable
+sudo usermod -a -G microk8s adam
+sudo chown -f -R adam ~/.kube
+microk8s status --wait-ready
 microk8s enable dns ingress storage metrics-server
 sudo snap alias microk8s.kubectl kubectl
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-mkdir -p ~/.kube
 microk8s config > ~/.kube/config
 echo "--allow-privileged=true" >> /var/snap/microk8s/current/args/kube-apiserver
 systemctl restart snap.microk8s.daemon-apiserver
 
 # install k8s tools
 wget https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_x86_64.tar.gz
-tar xvf k9s_Linux_x86_64.tar.gz && mv k9s /usr/local/bin/ && rm k9s_Linux_x86_64.tar.gz
+tar xvf k9s_Linux_x86_64.tar.gz && sudo mv k9s /usr/local/bin/ && rm k9s_Linux_x86_64.tar.gz
 
 wget https://github.com/ahmetb/kubectx/releases/download/v0.9.4/kubectx_v0.9.4_linux_x86_64.tar.gz
 wget https://github.com/ahmetb/kubectx/releases/download/v0.9.4/kubens_v0.9.4_linux_x86_64.tar.gz
