@@ -236,7 +236,7 @@ function! Status(winnr)
 
   " paste
   if active && &paste
-    let stat .= ' %2*' . '' . '%*'
+    let stat .= ' %1*' . '' . '%*'
   endif
 
   " file name
@@ -301,22 +301,29 @@ lua << EOF
 
   local onedarkpro = require("onedarkpro")
   onedarkpro.setup({
+    hlgroups = {
+      User1 = { fg = "#5daef2", bg = "none", style = "bold" },
+      User2 = { fg = "#5D636F", bg = "none", style = "bold" },
+      User3 = { fg = "#d19a66", bg = "none", style = "bold" },
+      User4 = { fg = "#5daef2", bg = "none", style = "bold" },
+      User5 = { fg = "#e06c75", bg = "none", style = "bold" }
+    },
     styles = {
-        strings = "NONE", -- Style that is applied to strings
-        comments = "italic", -- Style that is applied to comments
-        keywords = "NONE", -- Style that is applied to keywords
-        functions = "NONE", -- Style that is applied to functions
-        variables = "NONE", -- Style that is applied to variables
+      strings = "NONE", -- Style that is applied to strings
+      comments = "italic", -- Style that is applied to comments
+      keywords = "NONE", -- Style that is applied to keywords
+      functions = "NONE", -- Style that is applied to functions
+      variables = "NONE", -- Style that is applied to variables
     },
     options = {
-        bold = true, -- Use the themes opinionated bold styles?
-        italic = true, -- Use the themes opinionated italic styles?
-        underline = true, -- Use the themes opinionated underline styles?
-        undercurl = true, -- Use the themes opinionated undercurl styles?
-        cursorline = true, -- Use cursorline highlighting?
-        transparency = false, -- Use a transparent background?
-        terminal_colors = true, -- Use the theme's colors for Neovim's :terminal?
-        window_unfocussed_color = true, -- When the window is out of focus, change the normal background?
+      bold = true, -- Use the themes opinionated bold styles?
+      italic = true, -- Use the themes opinionated italic styles?
+      underline = true, -- Use the themes opinionated underline styles?
+      undercurl = true, -- Use the themes opinionated undercurl styles?
+      cursorline = true, -- Use cursorline highlighting?
+      transparency = false, -- Use a transparent background?
+      terminal_colors = true, -- Use the theme's colors for Neovim's :terminal?
+      window_unfocussed_color = true, -- When the window is out of focus, change the normal background?
     }
   })
   onedarkpro.load()
