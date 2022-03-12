@@ -52,7 +52,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: none
+  # decorations: none
 
   # Startup Mode (changes require restart)
   #
@@ -217,7 +217,7 @@ schemes:
       cyan:    '#56b6c2'
       white:   '#ffffff'
 
-colors: *light
+colors: *dark
 
 # Visual Bell
 #
@@ -249,7 +249,7 @@ bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
+# background_opacity: 1.0
 
 # Mouse bindings
 #
@@ -282,7 +282,7 @@ mouse:
 
   hide_when_typing: true
 
-  url:
+  # url:
     # URL launcher
     #
     # This program is executed when clicking on a text which is recognized as a URL.
@@ -302,7 +302,7 @@ mouse:
     #
     # These are the modifiers that need to be held down for opening URLs when clicking
     # on them. The available modifiers are documented in the key binding section.
-    modifiers: None
+    # modifiers: None
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
