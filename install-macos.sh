@@ -7,4 +7,4 @@ brew install coreutils wget git rcm ripgrep jq nvim awscli gnu-sed
 
 # install font
 brew tap homebrew/cask-fonts &&
-brew cask install font-roboto-mono-nerd-font
+brew --cask install font-roboto-mono-nerd-font

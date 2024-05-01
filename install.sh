@@ -1,29 +1,27 @@
 #!/bin/bash
 
-# timedatectl set-timezone Indian/Mauritius
-
 # add repos
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo add-apt-repository -y ppa:longsleep/golang-backports
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+# sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 # update package list
 sudo apt update
 
 # add GB locale
-sudo update-locale
-sudo locale-gen en_GB.utf8
+# sudo update-locale
+# sudo locale-gen en_GB.utf8
 
 # install tmux
-curl -LO https://github.com/nelsonenzo/tmux-appimage/releases/download/3.2a/tmux.appimage
-sudo mv tmux.appimage /usr/bin/tmux
-sudo chmod +x /usr/bin/tmux
+# curl -LO https://github.com/nelsonenzo/tmux-appimage/releases/download/3.2a/tmux.appimage
+# sudo mv tmux.appimage /usr/bin/tmux
+# sudo chmod +x /usr/bin/tmux
 
 # install apps
-sudo apt install -y apt-transport-https ca-certificates curl software-properties-common \
+sudo apt install -y tmux apt-transport-https ca-certificates curl software-properties-common \
   git build-essential exuberant-ctags wget speedtest-cli htop jq zip fish \
-  golang-go docker-ce rcm neovim python3-pip snapd
+  golang-go rcm neovim python3-pip snapd
 sudo python3 -m pip install --user --upgrade pynvim
 
 # install ripgrep
@@ -36,39 +34,39 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
 
 # install docker-compose
-DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
-mkdir -p $DOCKER_CONFIG/cli-plugins
-curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
-sudo chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+# DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+# mkdir -p $DOCKER_CONFIG/cli-plugins
+# curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+# sudo chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
 # install microk8s
-mkdir -p ~/.kube
-sudo snap install microk8s --classic --stable
-sudo usermod -a -G microk8s adam
-sudo chown -f -R adam ~/.kube
-microk8s status --wait-ready
-microk8s enable dns ingress storage metrics-server
-sudo snap alias microk8s.kubectl kubectl
-curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-microk8s config > ~/.kube/config
-echo "--allow-privileged=true" >> /var/snap/microk8s/current/args/kube-apiserver
-systemctl restart snap.microk8s.daemon-apiserver
+# mkdir -p ~/.kube
+# sudo snap install microk8s --classic --stable
+# sudo usermod -a -G microk8s adam
+# sudo chown -f -R adam ~/.kube
+# microk8s status --wait-ready
+# microk8s enable dns ingress storage metrics-server
+# sudo snap alias microk8s.kubectl kubectl
+# curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+# microk8s config > ~/.kube/config
+# echo "--allow-privileged=true" >> /var/snap/microk8s/current/args/kube-apiserver
+# systemctl restart snap.microk8s.daemon-apiserver
 
 # install k8s tools
 wget https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_x86_64.tar.gz
 tar xvf k9s_Linux_x86_64.tar.gz && sudo mv k9s /usr/local/bin/ && rm k9s_Linux_x86_64.tar.gz
 
-wget https://github.com/ahmetb/kubectx/releases/download/v0.9.4/kubectx_v0.9.4_linux_x86_64.tar.gz
-wget https://github.com/ahmetb/kubectx/releases/download/v0.9.4/kubens_v0.9.4_linux_x86_64.tar.gz
-tar xvf kubectx_v0.9.4_linux_x86_64.tar.gz && sudo mv kubectx /usr/local/bin/kctx && rm kubectx_v0.9.4_linux_x86_64.tar.gz
-tar xvf kubens_v0.9.4_linux_x86_64.tar.gz && sudo mv kubens /usr/local/bin/kns && rm kubens_v0.9.4_linux_x86_64.tar.gz
+wget https://github.com/ahmetb/kubectx/releases/download/v0.9.5/kubectx_v0.9.5_linux_x86_64.tar.gz
+wget https://github.com/ahmetb/kubectx/releases/download/v0.9.5/kubens_v0.9.5_linux_x86_64.tar.gz
+tar xvf kubectx_v0.9.5_linux_x86_64.tar.gz && sudo mv kubectx /usr/local/bin/kctx && rm kubectx_v0.9.5_linux_x86_64.tar.gz
+tar xvf kubens_v0.9.5_linux_x86_64.tar.gz && sudo mv kubens /usr/local/bin/kns && rm kubens_v0.9.5_linux_x86_64.tar.gz
 
-sudo echo > /var/snap/microk8s/current/args/kubectl-env
+# sudo echo > /var/snap/microk8s/current/args/kubectl-env
 sudo iptables -P FORWARD ACCEPT
 
 # update user to groups
-sudo usermod -aG sudo $USER
-sudo usermod -aG docker $USER
+# sudo usermod -aG sudo $USER
+# sudo usermod -aG docker $USER
 
 # use fish shell
 chsh -s /usr/bin/fish

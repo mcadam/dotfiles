@@ -50,7 +50,7 @@ end
 
 # Golang
 set -x GOPATH $HOME/go
-set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin /usr/local/opt/coreutils/libexec/gnubin $PATH /usr/local/go/bin $GOPATH/bin /snap/bin
+set -x PATH /opt/homebrew/opt/coreutils/libexec/gnubin /opt/homebrew/opt/gnu-sed/libexec/gnubin /usr/local/opt/gnu-sed/libexec/gnubin /usr/local/opt/coreutils/libexec/gnubin /usr/local/go/bin $GOPATH/bin /snap/bin /opt/homebrew/bin $PATH
 set -x EDITOR nvim
 
 set fish_color_command green

@@ -10,5 +10,5 @@
 	helper = store
 [pull]
 	rebase = false
-[includeIf "gitdir:~/thorchain/"]
-    path = ~/.gitconfig-thorchain
+[includeIf "gitdir:/Users/adam/Development/thorchain/"]
+    path = /Users/adam/.gitconfig-thorchain

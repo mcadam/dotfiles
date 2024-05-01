@@ -43,6 +43,9 @@ Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 Plug 'mhinz/vim-startify'
 Plug 'terryma/vim-expand-region'
 Plug 'phaazon/hop.nvim'
+Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'leafOfTree/vim-svelte-plugin'
 
 
 call plug#end()
@@ -57,6 +60,9 @@ if strftime('%H') >= 7 && strftime('%H') < 18
 else
   set background=dark
 endif
+
+let g:vim_svelte_plugin_load_full_syntax = 1
+let g:vim_svelte_plugin_use_typescript = 1
 
 set ttyfast
 set backspace=indent,eol,start
